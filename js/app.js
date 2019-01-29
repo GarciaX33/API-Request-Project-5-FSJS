@@ -28,8 +28,45 @@ function displayUsers(data){
     `}; /** will end for loop **/
   /** will append userGroup to gallery id **/
   $(gallery).append(userGroup);
-  /**  will add event listenr for modalUsers**/
+  /**  will add event listenr for modalUsers to display modalUsers**/
   $('.card').bind('click', function(){
       modalUsers(data[$('.card').index(this)]);
     });
+}
+
+/** will display extra user information viewable in the modal info container **/
+function modalUsers(info) {
+  let dob = info.dob.date;
+  let day = dob.slice(8, 10);
+  let month = dob.slice(5, 7);
+  let year= dob.slice(2, 4);
+  let gallery = '#gallery';
+  let modalContainer = '.modal-container';
+  let modalWindow = '';
+    modalWindow +=
+    `<div class="modal-container">
+        <div class="modal">
+            <button type="button" id="modal-close-btn" class="modal-close-btn"><strong>X</strong></button>
+            <div class="modal-info-container">
+                <img class="modal-img" src="${info.picture.large} " alt="profile picture">
+                <h3 id="name" class="modal-name cap">${info.name.first} ${info.name.last}</h3>
+                <p class="modal-text">${info.email}</p>
+                <p class="modal-text cap">${info.location.city}</p>
+                <hr>
+                <p class="modal-text">${info.phone}</p>
+                <p class="modal-text cap">${info.location.street}, ${info.location.state} ${info.location.postcode}</p>
+                <p class="modal-text"><strong>Birthday:</strong> ${month}/${day}/${year}</p>
+            </div>
+        </div>
+    </div>`;
+/** will appeend gallery id to modalWindow **/
+  $(gallery).append(modalWindow);
+/** will close button on click it calls to remove the modal container **/
+  $('#modal-close-btn').bind('click', function(){
+    $(modalContainer).remove();
+    $(gallery).show();
+  });
+  /**$('#modal-close-btn').bind('click'function(){
+    $(modalContainer).remove();
+  }); **/
 }
