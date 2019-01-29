@@ -10,7 +10,7 @@ $( document ).ready(function() {
     });
 });
 
-/** will display user info and profile picture **/
+/** will display user info and profile picture in each card **/
 function displayUsers(data){
   let userGroup = '';
   let gallery = '#gallery';
@@ -29,7 +29,7 @@ function displayUsers(data){
     `}; /** will end for loop **/
   /** will append userGroup to gallery id **/
   $(gallery).append(userGroup);
-  /**  will add event listenr for modalUsers to display modalUsers**/
+  /**  will add event listenr for modalUsers to display modalUsers when card is clicked**/
   $('.card').bind('click', function(){
       modalUsers(data[$('.card').index(this)]);
     });
