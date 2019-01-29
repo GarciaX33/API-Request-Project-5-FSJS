@@ -10,7 +10,7 @@ $( document ).ready(function() {
     });
 });
 
-/** will display user info and profile picture in each card **/
+/** will display user info and profile picture in each card and uppercase name and city **/
 function displayUsers(data){
   let userGroup = '';
   let gallery = '#gallery';
@@ -35,7 +35,7 @@ function displayUsers(data){
     });
 }
 
-/** will display extra user information viewable in the modal info container **/
+/** will display extra user information viewable in the modal info container with way to close modal **/
 function modalUsers(info) {
   let dob = info.dob.date;
   let day = dob.slice(8, 10);
