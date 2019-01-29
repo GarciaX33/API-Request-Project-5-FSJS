@@ -1,4 +1,5 @@
-/** will retrieve randomuser.me data **/
+/** will send a request to the API, and use the response data to display 12 users **/
+/** will retrieve randomuser.me data when page loads **/
 $( document ).ready(function() {
   fetch('https://randomuser.me/api?results=12&nat=us')
     .then(function(response) {
@@ -8,10 +9,10 @@ $( document ).ready(function() {
       return displayUsers(data.results);
     });
 });
-
+/** will display user info and profile picture **/
 function displayUsers(data){
-  let gallery = $('#gallery');
-  let userGroup = ''
+  let userGroup = '';
+  let gallery = '#gallery';
   for (let index = 0; index < data.length; index++){ /** will start for loop **/
     userGroup += `
     <div class="card">
@@ -19,17 +20,16 @@ function displayUsers(data){
             <img class="card-img" src="${data[index].picture.large}" alt="profile picture">
         </div>
         <div class="card-info-container">
-            <h3 id="name" class="card-name cap">${data[index].name.first} ${data[index].name.last}</h3>
+            <h3 id="name" class="card-name">${data[index].name.first.toUpperCase()} ${data[index].name.last.toUpperCase()}</h3>
             <p class="card-text">${data[index].email}</p>
-            <p class="card-text cap">${data[index].location.city}</p>
+            <p class="card-text">${data[index].location.city.toUpperCase()}</p>
         </div>
     </div>
-    `;
-  } /** will end for loop **/
+    `}; /** will end for loop **/
   /** will append userGroup to gallery id **/
-  gallery.append(userGroup);
-  /** will use jquery on modal close button on click it calls the function to remove the modal container **/
-  $('#modal-close-btn').on('click', function(){
-    $('.modal-container').remove();
-  });
+  $(gallery).append(userGroup);
+  /**  will add event listenr for modalUsers**/
+  $('.card').bind('click', function(){
+      modalUsers(data[$('.card').index(this)]);
+    });
 }
