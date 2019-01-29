@@ -9,6 +9,7 @@ $( document ).ready(function() {
       return displayUsers(data.results);
     });
 });
+
 /** will display user info and profile picture **/
 function displayUsers(data){
   let userGroup = '';
@@ -59,6 +60,7 @@ function modalUsers(info) {
             </div>
         </div>
     </div>`;
+
 /** will appeend gallery id to modalWindow **/
   $(gallery).append(modalWindow);
 /** will close button on click it calls to remove the modal container **/
